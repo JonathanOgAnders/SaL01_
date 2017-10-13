@@ -18,7 +18,6 @@ public class Main {
         endTimer = System.currentTimeMillis();
         System.out.println(endTimer-startTimer);
 
-        //
 
     }
 
