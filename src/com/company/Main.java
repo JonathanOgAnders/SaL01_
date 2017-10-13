@@ -2,43 +2,23 @@ package com.company;
 
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException
     {
-        long startTimer;
-        long endTimer;
         Reader reader = new Reader();
+        WordCounter wordCounter = new WordCounter();
         List<String> list = reader.getArray();
 
-        startTimer = System.currentTimeMillis();
-        Collections.sort(list);
-        Map<String, Integer> map = counter(list);
-        endTimer = System.currentTimeMillis();
-        System.out.println(endTimer-startTimer);
+        Map<String, Long> map = wordCounter.countWithoutStream(list);
+        System.out.println(map);
 
-        //
+        Map<String, Long> map2 = wordCounter.countWithStream(list);
+        System.out.println(map2);
 
+        Map<String, Long> map3 = wordCounter.countWithParallelStream(list);
+        System.out.println(map3);
     }
-
-    public static Map<String, Integer> counter(List<String> list)
-    {
-        Map<String, Integer> map = new HashMap<>();
-
-        for(String s: list)
-        {
-            if(!map.containsKey(s))
-            {
-                map.put(s,1);
-            }
-            else
-            {
-                map.replace(s, map.get(s)+1);
-            }
-        }
-
-        return map;
-    }
-
 }

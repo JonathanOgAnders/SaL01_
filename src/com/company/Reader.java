@@ -19,7 +19,7 @@ public class Reader
     {
         while(scanner.hasNext())
         {
-            array.add(scanner.next().replaceAll("[\"*?!.,' '\\-()]", ""));
+            array.add(scanner.next().replaceAll("[^\\\\p{L}\\\\p{Nd}]+]", "").toLowerCase());
         }
     }
 
